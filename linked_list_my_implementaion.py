@@ -1,93 +1,76 @@
-class Node(object):
-    def __init__(self,value):
-        self.value=value
-        self.next=None
-class linked_list(object):
-    def __init__(self,head=None):
-        self.head=head
-    def append(self,new_element):
-        pointer=self.head
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+class linked_list:
+    def __init__(self, head=None):
+        self.head = head
+
+    def append(self, new_element):
+        current = self.head
         if self.head:
-            while pointer.next:
-                pointer=pointer.next
-            pointer.next=new_element
+            while current.next:
+                current = current.next
+            current.next = new_element
         else:
-            self.head=new_element
-    def get_position(self,position):
-        pointer=self.head
+            self.head = new_element
 
-        if self.head :
-            for  count in range(position):
+    def delete(self, value):
+        current = self.head
+        prev = None
+        while current.value != value and current.next:
+            prev = current
+            current = current.next
+        if current.value == value:
+            if prev:
+                prev.next = current.next
+            else:
+                self.head = current.next
 
-                count+=1
-                if count==position :
-                    return pointer
-                pointer=pointer.next
-
-
-
+    def get_postion(self, postion):
+        counter = 0
+        current = self.head
+        if postion > 0:
+            while counter != postion and current:
+                current = current.next
+                counter += 1
+            if counter == postion:
+                return current
             return None
-        else:
+        return None
+
+    def insert(self, element, postion):
+        prev = None
+        try:
+            current_element = self.get_postion(postion)
+        except:
             return None
-    def insert(self,new_element,position):
-        old_pointer=self.get_position(position)
-        if position==1:
-            temp=self.head
-            self.head=new_element
-            self.head.next=temp
-        else:
-            past_pointer=self.get_position(position-1)
-            past_pointer.next=new_element
-            new_element.next=old_pointer
+        current = self.head
+        while current and current.value != current_element.value:
+            prev = current
+            current = current.next
 
-    def delete(self,value):
-        pointer=self.head
-        prev=None
-        if self.head:
-            #this my code but it is not right when delteting any value theat doesnot exisit in the list it will remove the last element i should to take it easy and find more simple way to do it xd
-            #while pointer.value!=value and pointer.next:
-                #position+=1
-                #pointer=pointer.next
-            #if position==0 :
-                #pointer.next=None
-                #self.head=self.get_position(2)
-                #pointer.next=-1
+        if current:
+            if prev:
+                prev.next = element
+                element.next = current_element
+            else:
+                self.head = element
 
-            #elif pointer.next==None and self.get_position(position)!=None :
-                #self.get_position(position).next=None
 
-            #else:    #self.get_position(position+1).next=-1   #idk
-                #self.get_position(position).next=self.get_position(position+2)
-            #self.get_position(position+1).next=-1
-            while pointer.next and pointer.value!=value:
-                prev=pointer
-                pointer=pointer.next
-            if pointer.value == value:
-                if prev:
-                    prev.next=pointer.next
-                else:
-                    self.head=pointer.next
+n1 = Node(1)
+n2 = Node(2)
+n3 = Node(3)
+n4 = Node(4)
+n5 = Node(5)
 
-n1=Node(1)
-n2=Node(2)
-n3=Node(3)
-n4=Node(4)
-
-ll=linked_list(n1)
+ll = linked_list(n1)
 ll.append(n2)
 ll.append(n3)
 ll.append(n4)
-
-#test get_position
-#print (ll.get_position(1).value)
-#test insert
-#ll.insert(n4,2)
-#print (ll.get_position(2).value)
-
-#test delete
-ll.delete(5)
-#print ll.head.value
-print ll.get_position(1).value
-print ll.get_position(2).value
-print ll.get_position(3).value
-print ll.get_position(4).value
+print(ll.get_postion(1).value)
+ll.insert(n5, 2)
+print(ll.get_postion(2).value)
+ll.delete(10)
