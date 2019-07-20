@@ -13,7 +13,7 @@ class linked_list:
         self.head = head
 
     def push_front(self, new_node):
-        ''' pushing the new element to be the element after the node'''
+        ''' pushing the new element to be the node'''
         current = self.head
         if self.head:
             self.head = new_node
@@ -21,6 +21,50 @@ class linked_list:
 
         else:
             self.head = new_node
+    @property
+    def top_front(self):
+        '''  method for getting head '''
+        if self.head:
+            return self.head
+        return None
+    @property
+    def pop_front(self):
+        ''' method for poping head '''
+        try :
+            current = self.head
+            self.head = current.next
+            return current
+        except :
+            return None
+    
+    def push_pack(self,new_node):
+        ''' method for push element to pack '''
+        current = self.head
+        try :
+            while (current.next != None):
+                current = current.next
+            current.next = new_node
+        except :
+            return None
+    @property    
+    def top_pack(self):
+        ''' property for getting the last element '''
+        current = self.head
+        try : 
+            while(current.next != None) :
+                current = current.next
+            return current.value
+        except :
+            return None
+    @property
+    def pop_pack(self):
+        ''' property for poping the last element '''
+        try :
+            tail = self.top_pack
+            self.delete(tail.value)
+            return tail.value
+        except :
+            return None
 
     def append(self, new_element):
         current = self.head
@@ -75,26 +119,4 @@ class linked_list:
                 self.head = element
 
 
-n1 = Node(1)
-n2 = Node(2)
-n3 = Node(3)
-n4 = Node(4)
-n5 = Node(5)
-n6 = Node(6)
 
-ll = linked_list(n1)
-ll.append(n2)
-ll.append(n3)
-ll.append(n4)
-print(ll.get_postion(1).value)
-
-print(ll.get_postion(2).value)
-ll.delete(10)
-
-ll.push_front(n6)
-ll.insert(n5, 2)
-print(ll.get_postion(1).value)
-print(ll.get_postion(0).value)
-
-test_ll = linked_list()
-test_ll.push_front(n6)
