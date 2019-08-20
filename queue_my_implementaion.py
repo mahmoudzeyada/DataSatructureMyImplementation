@@ -16,8 +16,8 @@ q = Queue(1)
 q.enqueue(2)
 q.enqueue(3)
 
-print (q.peek())
+print(q.peek())
 
 q.enqueue(4)
-print (q.dequeue())
-print (q.peek())
+print(q.dequeue())
+print(q.peek())

@@ -21,49 +21,53 @@ class linked_list:
 
         else:
             self.head = new_node
+
     @property
     def top_front(self):
         '''  method for getting head '''
         if self.head:
             return self.head
         return None
+
     @property
     def pop_front(self):
         ''' method for poping head '''
-        try :
+        try:
             current = self.head
             self.head = current.next
             return current
-        except :
+        except:
             return None
-    
-    def push_pack(self,new_node):
+
+    def push_pack(self, new_node):
         ''' method for push element to pack '''
         current = self.head
-        try :
+        try:
             while (current.next != None):
                 current = current.next
             current.next = new_node
-        except :
+        except:
             return None
-    @property    
+
+    @property
     def top_pack(self):
         ''' property for getting the last element '''
         current = self.head
-        try : 
-            while(current.next != None) :
+        try:
+            while(current.next != None):
                 current = current.next
             return current.value
-        except :
+        except:
             return None
+
     @property
     def pop_pack(self):
         ''' property for poping the last element '''
-        try :
+        try:
             tail = self.top_pack
             self.delete(tail.value)
             return tail.value
-        except :
+        except:
             return None
 
     def append(self, new_element):
@@ -117,6 +121,3 @@ class linked_list:
                 element.next = current_element
             else:
                 self.head = element
-
-
-
