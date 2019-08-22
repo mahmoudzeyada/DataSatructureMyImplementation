@@ -31,7 +31,7 @@ def heapify(a, i):
 
 def build_max_heap(a):
     ''' function for building max heap binary tree time-complexity = O(n) '''
-    for i in range(int(len(a)/2)):
+    for i in range(int(len(a)/2), -1, -1):
         heapify(a, i)
     return a
 
@@ -82,4 +82,4 @@ def build_max_heap_with_insert():
     return heap
 
 
-print(build_max_heap_with_insert())
+print(build_max_heap([1, 2, 3, 4, 5]))
